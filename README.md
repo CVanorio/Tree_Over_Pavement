@@ -19,6 +19,6 @@ Tree canopy over pavement affects urban heat, runoff, and GI performance, but it
 | -------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **NAIP (USDA)**                        | 1-m four-band imagery (RGB + NIR) used as model input                | [NAIP](https://developers.google.com/earth-engine/datasets/catalog/USDA_NAIP_DOQQ)                         |
 | **OpenStreetMap (OSM)**                | Roads, sidewalks, cycleways, parking areas used to build paved masks | [OpenStreetMap (OSM)](https://www.openstreetmap.org)                                                                                                                   |
-| **Meta High-Resolution Canopy Height** | 1-m canopy height used to detect tree presence                       | [High Resolution 1m Global Canopy Height Maps)](https://developers.google.com/earth-engine/datasets/catalog/Meta_Highres_Canopy_Height](https://gee-community-catalog.org/projects/meta_trees/#dataset-citation)) |
+| **Meta High-Resolution Canopy Height** | 1-m canopy height used to detect tree presence                       | [High Resolution 1m Global Canopy Height Maps)](https://gee-community-catalog.org/projects/meta_trees/) |
 
 
