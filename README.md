@@ -1,23 +1,46 @@
-# Tree_Over_Pavement
+# Tree_Over_Pavement  
+## Identifying Tree Canopy Over Paved Surfaces Using NAIP Imagery and Deep Learning
 
-# Identifying Tree Canopy Over Paved Surfaces Using NAIP Imagery and Deep Learning
 ## Summary
 
-This project develops and evaluates a workflow for detecting tree canopy that overhangs paved surfaces using high-resolution NAIP imagery, OpenStreetMap geometries, canopy height data, and a teacher–student U-Net segmentation model. Labels are generated automatically through buffered OSM pavement footprints intersected with canopy height, allowing training without manual labeling. Models are trained on tiled 224×224 image chips and evaluated using accuracy, IoU, precision, recall, and F1.
+This project develops and evaluates a workflow for detecting **tree canopy that overhangs paved surfaces (tree over pavement, TOP)** using high-resolution NAIP imagery and a teacher–student U-Net segmentation framework. Training labels are generated automatically by intersecting buffered OpenStreetMap pavement features with high-resolution canopy height data, eliminating the need for manual annotation. Models are trained on tiled 224×224 image chips and evaluated using accuracy, IoU, precision, recall, and F1 metrics.
 
 ## Research Question
 
-Can a deep learning model reliably distinguish tree canopy that overhangs pavement, using only RGB/NIR NAIP imagery at inference?
+Can a deep learning model reliably distinguish tree canopy that overhangs pavement using only RGB and NIR NAIP imagery at inference time?
 
 ## Motivation
 
-Tree canopy over pavement affects urban heat, runoff, and green infrastructure (GI) performance, but it is rarely, if ever, mapped because pavement is visually obscured in aerial imagery. Identifying this configuration is important for urban hydrology, cooling, and GI planning. Automating label generation supports scalable, reproducible mapping across cities.
+Tree canopy over pavement influences urban heat, stormwater runoff, and green infrastructure performance, but it is rarely mapped because pavement is often fully obscured in aerial imagery. Identifying this configuration is important for urban hydrology, cooling, and GI planning. Automating label generation enables scalable, reproducible mapping across cities without the need for costly manual labeling.
 
-## Datasets
+## Dataset
 
-| Dataset                                | Description                                                          | Link                                                                                                                                                                             |
-| -------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **NAIP (USDA)**                        | 1-m four-band imagery (RGB + NIR) used as model input                | [NAIP](https://developers.google.com/earth-engine/datasets/catalog/USDA_NAIP_DOQQ)                         |
-| **OpenStreetMap (OSM)**                | Roads, sidewalks, cycleways, parking areas used to build paved masks | [OpenStreetMap (OSM)](https://www.openstreetmap.org)                                                                                                                   |
-| **Meta High-Resolution Canopy Height** | 1-m canopy height used to detect tree presence                       | [High Resolution 1m Global Canopy Height Map](https://gee-community-catalog.org/projects/meta_trees/) |
+The model-ready dataset used in this project is available here:
 
+https://drive.google.com/drive/folders/1IohJ4p7b2hXmYYkassmejs-5YOzG1LSP?usp=drive_link
+
+### Dataset Description
+
+The dataset consists of **224×224 pixel image chips** organized into `training`, `validation`, and `testing` splits. Each sample includes:
+
+- **Input (`*_stack.tif`)**  
+  A 6-band raster containing:
+  - RGB and Near-infrared (NIR) bands, from NAIP 1-m imagery
+  - Binary tree canopy mask
+  - Binary paved surface mask  
+
+- **Label (`*_label.tif`)**  
+  A 3-class segmentation mask where:
+  - 0 = background  
+  - 1 = tree over pavement (TOP)  
+  - 2 = tree not over pavement (TNP)
+
+Labels were generated programmatically by intersecting buffered pavement geometries from OpenStreetMap and canopy height data from the Meta Global High Resolution Canopy Height Maps, enabling consistent labeling without manual image annotation. The dataset contains 2536 images total. These are split across three folders: train with 1775 images (70%), val with 380 images (15%), and test with 381 images (15%). The images cover the city of Madison, WI. All 6 bands are used for teacher training, and the first 4 bands (NAIP-only) are used to train the student and baseline models.
+
+## Notes
+
+To run the training and evaluation script:
+
+1. Add a shortcut copy of the dataset folder to your Google Drive by right-clicking the provided folder, selecting organize, and clicking add shortcut.
+3. Mount Google Drive in Google Colab and set the local dataset path (e.g., `/content/drive/MyDrive/your_TOP_dataset_copy`).
+4. Run the full notebook; all required dependencies are installed automatically.
