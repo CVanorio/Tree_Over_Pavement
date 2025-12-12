@@ -28,13 +28,18 @@ The dataset consists of **224×224 pixel image chips** organized into `training`
   - Binary tree canopy mask
   - Binary paved surface mask  
 
+
+  <img width="781" height="166" alt="image" src="https://github.com/user-attachments/assets/4e557de1-149c-482a-91a9-c12cb48a704d" />
+  
+
 - **Labels (`*_label.tif`)**  
   A 3-class mask where:
   - 0 = background  
   - 1 = tree over pavement (TOP)  
   - 2 = tree not over pavement (TNP)
  
-  <img width="781" height="166" alt="image" src="https://github.com/user-attachments/assets/4e557de1-149c-482a-91a9-c12cb48a704d" />
+
+<img width="805" height="807" alt="image" src="https://github.com/user-attachments/assets/e5771f5e-1227-47c4-bb97-7f0b3c0dcc07" />
 
 
 The dataset contains 2536 images total. These are split across three folders: train with 1775 images (70%), val with 380 images (15%), and test with 381 images (15%). The images cover the city of Madison, WI. All 6 bands are used for teacher training, and the first 4 bands (NAIP-only) are used to train the student and baseline models.
@@ -46,6 +51,7 @@ To run the training and evaluation script:
 1. Add a shortcut copy of the dataset folder to your Google Drive by right-clicking the provided folder, selecting organize, and clicking add shortcut.
 3. Mount Google Drive in Google Colab and set the local dataset path (e.g., `/content/drive/MyDrive/your_TOP_dataset_copy`).
 4. Run the full notebook; all required dependencies are installed automatically.
+
 
 
 
