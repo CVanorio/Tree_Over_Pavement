@@ -15,7 +15,7 @@ Tree canopy over pavement influences urban heat, stormwater runoff, and green in
 
 ## Dataset
 
-The model-ready dataset used in this project is available [here]([https://www.openstreetmap.org](https://drive.google.com/drive/folders/1IohJ4p7b2hXmYYkassmejs-5YOzG1LSP?usp=drive_link)).
+The model-ready dataset used in this project is available [here](https://drive.google.com/drive/folders/1IohJ4p7b2hXmYYkassmejs-5YOzG1LSP?usp=drive_link).
 
 
 ### Dataset Description
@@ -43,4 +43,5 @@ To run the training and evaluation script:
 1. Add a shortcut copy of the dataset folder to your Google Drive by right-clicking the provided folder, selecting organize, and clicking add shortcut.
 3. Mount Google Drive in Google Colab and set the local dataset path (e.g., `/content/drive/MyDrive/your_TOP_dataset_copy`).
 4. Run the full notebook; all required dependencies are installed automatically.
+
 
